@@ -47,8 +47,8 @@ namespace VirtualShop.Web.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var apiResponse = await response.Content.ReadAsStreamAsync();
-                    productsVM = await JsonSerializer
-                                    .DeserializeAsync<IEnumerable<ProductViewModel>>(apiResponse, _options);
+                    productVM = await JsonSerializer
+                              .DeserializeAsync<ProductViewModel>(apiResponse, _options);
                 }
                 else
                 {

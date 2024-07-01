@@ -18,8 +18,8 @@ namespace VirtualShop.ProductApi.Repository
         }
         public async Task<Product> GetById(int id)
         {
-            return await _context.Products.Include(c => c.Category.Name)
-                                            .Where(c => c.Id == id).FirstOrDefaultAsync();
+            return await _context.Products.Include(c => c.Category)
+                                            .Where(p => p.Id == id).FirstOrDefaultAsync();
         }
         public async Task<Product> Created(Product product)
         {

@@ -49,12 +49,9 @@ namespace VirtualShop.ProductApi.Controllers
             return new CreatedAtRouteResult("GetProduct", new { id = productDTO.Id }, productDTO);
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult> Edit(int id, [FromBody] ProductDTO productDTO)
+        [HttpPut()]
+        public async Task<ActionResult> Edit([FromBody] ProductDTO productDTO)
         {
-            if (id != productDTO.Id)
-                return BadRequest();
-
             if (productDTO is null)
                 return BadRequest();
 
