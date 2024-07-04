@@ -38,17 +38,17 @@ namespace VirtualShop.IdentityServer.Configuration
                 },
                 new Client
                 {
-                     ClientId = "vshop",
+                     ClientId = "virtualshop",
                      ClientSecrets = { new Secret("caio#dev".Sha256())},
                      AllowedGrantTypes = GrantTypes.Code, //via codigo
-                     RedirectUris = {"https://localhost:7165/signin-oidc"},//login
+                     RedirectUris = {"https://localhost:7265/signin-oidc"},//login
                      PostLogoutRedirectUris = {"https://localhost:7165/signout-callback-oidc"},//logout
                      AllowedScopes = new List<string>
                      {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "vshop"
+                        "virtualshop"
                      }
                 }
 

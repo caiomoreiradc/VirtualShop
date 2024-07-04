@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using VirtualShop.Web.Models;
+using VirtualShop.Web.Roles;
 using VirtualShop.Web.Services;
 using VirtualShop.Web.Services.Contracts;
 
@@ -30,6 +32,7 @@ namespace VirtualShop.Web.Controllers
 
         #region Criar Produto
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> CreateProduct()
         {
             ViewBag.CategoryId = new SelectList(await
@@ -38,6 +41,7 @@ namespace VirtualShop.Web.Controllers
             return View();
         }        
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProduct(ProductViewModel productVM)
         {
             if(ModelState.IsValid)
@@ -71,6 +75,7 @@ namespace VirtualShop.Web.Controllers
             return View(result);
         }        
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UpdateProduct(ProductViewModel productVM)
         {
             if (ModelState.IsValid)
@@ -86,6 +91,7 @@ namespace VirtualShop.Web.Controllers
 
         #region Deletar Produto
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<ProductViewModel>> DeleteProduct(int id)
         {
             var result = await _productService.FindProductById(id);
@@ -96,6 +102,7 @@ namespace VirtualShop.Web.Controllers
             return View(result);
         }
         [HttpPost(), ActionName("DeleteProduct")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var result = await _productService.DeleteProductById(id);
