@@ -9,7 +9,6 @@ namespace VirtualShop.ProductApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -42,6 +41,7 @@ namespace VirtualShop.ProductApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Create([FromBody] ProductDTO productDTO)
         {
             if (productDTO is null)
@@ -53,6 +53,7 @@ namespace VirtualShop.ProductApi.Controllers
         }
 
         [HttpPut()]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Edit([FromBody] ProductDTO productDTO)
         {
             if (productDTO is null)
