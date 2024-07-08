@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "virtualshop";
         options.ClientSecret = builder.Configuration["Client:Secret"];
         options.ResponseType = "code";
-        options.ClaimActions.MapJsonKey("role", "roles", "roles");
+        options.ClaimActions.MapJsonKey("role", "role", "role");
         options.ClaimActions.MapJsonKey("sub", "sub", "sub");
         options.TokenValidationParameters.NameClaimType = "name";
         options.TokenValidationParameters.RoleClaimType = "role";
